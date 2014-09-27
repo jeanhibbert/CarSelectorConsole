@@ -34,13 +34,13 @@ namespace CarSelector.Services
             int m = begPoint + 1;
             int n = endPoint;
             while ((m < endPoint) &&
-                   (input[pivot].CompletionTime <= input[m].CompletionTime))
+                   (input[pivot].CompletionTime >= input[m].CompletionTime))
             {
                 m++;
             }
 
             while ((n > begPoint) &&
-                   (input[pivot].CompletionTime >= input[n].CompletionTime))
+                   (input[pivot].CompletionTime <= input[n].CompletionTime))
             {
                 n--;
             }
@@ -51,13 +51,13 @@ namespace CarSelector.Services
                 input[n] = temp;
 
                 while ((m < endPoint) &&
-                       (input[pivot].CompletionTime <= input[m].CompletionTime))
+                       (input[pivot].CompletionTime >= input[m].CompletionTime))
                 {
                     m++;
                 }
 
                 while ((n > begPoint) &&
-                       (input[pivot].CompletionTime >= input[n].CompletionTime))
+                       (input[pivot].CompletionTime <= input[n].CompletionTime))
                 {
                     n--;
                 }
