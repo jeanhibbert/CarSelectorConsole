@@ -1,21 +1,18 @@
 ﻿using CarSelector.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CarSelector.Services
 {
     public class CarEvaluatorService
     {
-        public void DetermineCompletionTime(RaceTrack raceTrack, CarConfiguration carConfiguration)
+        public CarRaceTrackEvaluation DetermineCompletionTime(RaceTrack raceTrack, CarConfiguration carConfiguration)
         {
-            int totalPitstopsRequired = Convert.ToInt32(raceTrack.NoOfLapsToComplete / (carConfiguration.FuelCapacity / carConfiguration.AverageFuelConsumptionPerLap));
+            CarRaceTrackEvaluation carRaceTrackEvaluation = new CarRaceTrackEvaluation(raceTrack, carConfiguration);
 
-            var timeToCompleteRace = carConfiguration.TimeToCompleteLap * (raceTrack.NoOfLapsToComplete) + totalPitstopsRequired * raceTrack.PitstopTimespan;
+            int totalPitstopsRequired = (int)(raceTrack.NoOfLapsToComplete / (carConfiguration.FuelCapacity / carConfiguration.AverageFuelConsumptionPerLap));
 
-            carConfiguration.RaceTrack = raceTrack;
-            carConfiguration.TimeToCompleteRace = timeToCompleteRace;
+            carRaceTrackEvaluation.CompletionTime = carConfiguration.TimeToCompleteLap * raceTrack.NoOfLapsToComplete + totalPitstopsRequired * raceTrack.PitstopTimespan;
+
+            return carRaceTrackEvaluation;
         }
     }
 }

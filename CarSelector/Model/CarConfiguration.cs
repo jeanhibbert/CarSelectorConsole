@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CarSelector.Model
+﻿namespace CarSelector.Model
 {
     public class CarConfiguration
     {
-        public double FuelCapacity { get; set; }
+        public double FuelCapacity { get; set; } // Measured in Litres
 
-        public double TimeToCompleteLap { get; set; }
+        public double TimeToCompleteLap { get; set; } // Measured in Seconds
 
-        public double AverageFuelConsumptionPerLap { get; set; }
+        public double AverageFuelConsumptionPerLap { get; set; } // Measured in Litres
 
-        public RaceTrack RaceTrack { get; set; }
-
-        public double TimeToCompleteRace { get; set; }
+        public double TimeToCompleteRace { get; set; } // Measured in Seconds
     }
 }
