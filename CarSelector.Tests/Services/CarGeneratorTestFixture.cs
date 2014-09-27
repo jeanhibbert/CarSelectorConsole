@@ -5,7 +5,6 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 
-    using CarSelector.Services;
     using CarSelector.Model;
 
     [TestClass]

@@ -12,6 +12,19 @@ namespace CarSelector.Tests.Services
     [TestClass]
     public class CarEvaluatorServiceTestFixture
     {
+        private RaceTrack _raceTrack;
+
+        [TestInitialize]
+        public void Setup()
+        {
+            _raceTrack = new RaceTrack
+            {
+                LapDistance = 3, // kilometers
+                NoOfLapsToComplete = 100,
+                PitstopTimespan = 30 // Seconds
+            };
+        }
+
         [TestMethod]
         public void CanEvaluateCarForSingleTrack()
         {
@@ -20,15 +33,8 @@ namespace CarSelector.Tests.Services
             carConfiguration.TimeToCompleteLap = 300; // Seconds to complete lap
             carConfiguration.AverageFuelConsumptionPerLap = 2; // Average fuel consumption per lap in Litres
 
-            RaceTrack raceTrack = new RaceTrack
-            {
-                LapDistance = 3, // kilometers
-                NoOfLapsToComplete = 100,
-                PitstopTimespan = 30 // Seconds
-            };
-
             CarEvaluatorService carEvaluatorService = new CarEvaluatorService();
-            CarRaceTrackEvaluation carRaceTrackEvaluation = carEvaluatorService.DetermineCompletionTime(raceTrack, carConfiguration);
+            CarRaceTrackEvaluation carRaceTrackEvaluation = carEvaluatorService.DetermineCompletionTime(_raceTrack, carConfiguration);
 
             Assert.AreEqual(30060, carRaceTrackEvaluation.CompletionTime);
         }
@@ -39,21 +45,17 @@ namespace CarSelector.Tests.Services
             CarGenerator carGenerator = new CarGenerator();
             CarConfiguration[] carConfigurations = carGenerator.GenerateCarConfigurations(10000);
 
-            RaceTrack raceTrack = new RaceTrack
-            {
-                LapDistance = 3, // kilometers
-                NoOfLapsToComplete = 100,
-                PitstopTimespan = 30 // Seconds
-            };
-
             CarEvaluatorService carEvaluatorService = new CarEvaluatorService();
-            List<CarRaceTrackEvaluation> carRaceTrackEvaluations = new List<CarRaceTrackEvaluation>();
-            foreach(CarConfiguration carConfiguration in carConfigurations)
-            {
-                carRaceTrackEvaluations.Add(carEvaluatorService.DetermineCompletionTime(raceTrack, carConfiguration));
-            }
+            CarRaceTrackEvaluation[] carRaceTrackEvaluations =
+                carEvaluatorService.EvaluateCarsAgainstRaceTrack(_raceTrack, carConfigurations);
 
-            Assert.IsTrue(carRaceTrackEvaluations.Where(crt => crt.CompletionTime != default(double)).Count() == 10000);
+            for (int i = 0; i < carRaceTrackEvaluations.Length ; i++ )
+            {
+                if (i > 0)
+                {
+                    Assert.IsTrue(carRaceTrackEvaluations[i].CompletionTime >= carRaceTrackEvaluations[i - 1].CompletionTime);       
+                }
+            }
         }
 
     }
