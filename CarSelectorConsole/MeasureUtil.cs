@@ -1,0 +1,33 @@
+﻿using System;
+
+namespace CarSelectorConsole
+{
+    using System.Diagnostics;
+
+    public class MeasureUtil : IDisposable
+    {
+        private Stopwatch _stopWatch;
+
+        public MeasureUtil(string name)
+        {
+            Console.WriteLine("--- {0} ---", name);
+            _stopWatch = new Stopwatch();
+            _stopWatch.Start();
+        }
+
+        #region IDisposable Members
+
+        public void Dispose()
+        {
+            _stopWatch.Stop();
+            TimeSpan ts = _stopWatch.Elapsed;
+
+            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+                ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+            Console.WriteLine(elapsedTime, "RunTime");
+            Console.WriteLine("------");
+        }
+
+        #endregion
+    }
+}

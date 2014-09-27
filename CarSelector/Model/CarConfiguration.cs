@@ -7,7 +7,5 @@
         public double TimeToCompleteLap { get; set; } // Measured in Seconds
 
         public double AverageFuelConsumptionPerLap { get; set; } // Measured in Litres
-
-        public double TimeToCompleteRace { get; set; } // Measured in Seconds
     }
 }
