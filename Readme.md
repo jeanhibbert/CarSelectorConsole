@@ -1,19 +1,10 @@
-﻿# Car Selector for a predefined race track
-
- - [Problem Overview](#Problem-Overview)
- - [General Throughts](#General-Thoughts)
- - [Implementation Specifics](#Implementation-Specifics)
- - [General Thoughts Goals](#General-thoughts-Goals)
- - [Outstanding work](#Outstanding-work)
- - [References](#References)
-
-# Problem Overview
+﻿# Problem Overview
 
 "Create a race car setup selector for a car racing team. The purpose of the software is to be able to rank a given set of
 car configurations for a particular race track based on the race completion time.
 The 2 main entities are: Race Track and Car Configuration"
 
-# Constraints
+# Primary Constraint
 - This means that your code should not have any using statements or have any references, even to System.
 
 # Implementation Specifics
