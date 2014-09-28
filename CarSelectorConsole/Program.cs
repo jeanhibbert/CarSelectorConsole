@@ -5,18 +5,19 @@
     using CarSelector.Model;
     using CarSelector.Services;
     using CarSelector.Tests.Utils;
+    using CarSelector.Contracts;
 
     class Program
     {
         static void Main(string[] args)
         {
             // implement sorting algorithm - DONE
-            // implement interfaces
+            // implement random track/car generator + Fix
+            // Handle zero/null values correctly
+            // implement interfaces + think about multi threaded usage
             // Implement performance test class - DONE
             // ensure nothing in assembly makes use of framework libraries - DONE
-            // implement random track/car generator
             // Create cmd with explanation of implementation
-            // think about multi threaded usage
             // push project up to github - DONE
 
             RaceTrack _raceTrack = new RaceTrack
@@ -29,12 +30,12 @@
             CarGenerator carGenerator = new CarGenerator();
             CarConfiguration[] carConfigurations = carGenerator.GenerateCarConfigurations(100000);
 
-            CarEvaluatorService carEvaluatorService = new CarEvaluatorService();
+            ICarEvaluatorService carEvaluatorService = new CarEvaluatorService();
             CarRaceTrackEvaluation[] carRaceTrackEvaluations;
             using (MeasureUtil measureUtil = new MeasureUtil("Evaluating 100000 cars against race track"))
             {
                 carRaceTrackEvaluations =
-                    carEvaluatorService.EvaluateCarsAgainstRaceTrack(_raceTrack, carConfigurations);
+                    carEvaluatorService.EvaluateAndSort(_raceTrack, carConfigurations);
             }
 
             Console.WriteLine("The fastest car was {0}", carRaceTrackEvaluations[0]);

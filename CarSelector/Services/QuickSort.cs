@@ -3,7 +3,7 @@ namespace CarSelector.Services
 {
     using CarSelector.Model;
 
-    public class QuickSort<T> where T : ICompletionTime
+    internal class QuickSort<T> where T : ICompletionTime
     {
         T[] input;
 
@@ -16,7 +16,6 @@ namespace CarSelector.Services
             }
 
         }
-
         public T[] Output
         {
             get

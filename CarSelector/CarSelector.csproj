@@ -33,6 +33,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\ICarEvaluatorService.cs" />
     <Compile Include="Model\CarConfiguration.cs" />
     <Compile Include="Model\ICompletionTime.cs" />
     <Compile Include="Model\RaceTrack.cs" />
@@ -41,7 +42,9 @@
     <Compile Include="Model\CarRaceTrackEvaluation.cs" />
     <Compile Include="Services\QuickSort.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Readme.md" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

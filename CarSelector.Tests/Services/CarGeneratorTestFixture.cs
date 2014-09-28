@@ -1,11 +1,8 @@
 ﻿namespace CarSelector.Tests.Services
 {
-    using CarSelector.Tests.Utils;
-
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-
     using CarSelector.Model;
+    using CarSelector.Tests.Utils;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public class CarGeneratorTestFixture

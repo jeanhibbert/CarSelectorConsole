@@ -1,13 +1,15 @@
-﻿using CarSelector.Model;
+﻿using CarSelector.Contracts;
+using CarSelector.Model;
 
 namespace CarSelector.Services
 {
-    public class CarEvaluatorService
+    public class CarEvaluatorService : ICarEvaluatorService
     {
-        public CarRaceTrackEvaluation DetermineCompletionTime(RaceTrack raceTrack, CarConfiguration carConfiguration)
+        public virtual CarRaceTrackEvaluation Evaluate(RaceTrack raceTrack, CarConfiguration carConfiguration)
         {
             CarRaceTrackEvaluation carRaceTrackEvaluation = new CarRaceTrackEvaluation(raceTrack, carConfiguration);
 
+            // Determine total pitstops and round down by casting to int
             int totalPitstopsRequired = (int)(raceTrack.NoOfLapsToComplete / (carConfiguration.FuelCapacity / carConfiguration.AverageFuelConsumptionPerLap));
 
             carRaceTrackEvaluation.CompletionTime = carConfiguration.TimeToCompleteLap * raceTrack.NoOfLapsToComplete + totalPitstopsRequired * raceTrack.PitstopTimespan;
@@ -15,14 +17,14 @@ namespace CarSelector.Services
             return carRaceTrackEvaluation;
         }
 
-        public CarRaceTrackEvaluation[] EvaluateCarsAgainstRaceTrack(
+        public virtual  CarRaceTrackEvaluation[] EvaluateAndSort(
             RaceTrack raceTrack, CarConfiguration[] carConfigurations)
         {
             CarRaceTrackEvaluation[] carRaceTrackEvaluations = new CarRaceTrackEvaluation[carConfigurations.Length];
 
             for (int i = 0; i < carConfigurations.Length; i++)
             {
-                carRaceTrackEvaluations[i] = DetermineCompletionTime(raceTrack, carConfigurations[i]);
+                carRaceTrackEvaluations[i] = this.Evaluate(raceTrack, carConfigurations[i]);
             }
 
             QuickSort<CarRaceTrackEvaluation> evaluationSorter = new QuickSort<CarRaceTrackEvaluation>(carRaceTrackEvaluations);
