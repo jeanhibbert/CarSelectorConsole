@@ -1,4 +1,4 @@
-﻿namespace CarSelector.Model
+﻿namespace CarSelector.Contracts
 {
     public interface ICompletionTime
     {

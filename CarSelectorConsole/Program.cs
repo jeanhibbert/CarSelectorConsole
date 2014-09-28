@@ -11,15 +11,6 @@
     {
         static void Main(string[] args)
         {
-            // implement sorting algorithm - DONE
-            // implement random track/car generator + Fix
-            // Handle zero/null values correctly
-            // implement interfaces + think about multi threaded usage
-            // Implement performance test class - DONE
-            // ensure nothing in assembly makes use of framework libraries - DONE
-            // Create cmd with explanation of implementation
-            // push project up to github - DONE
-
             RaceTrack _raceTrack = new RaceTrack
             {
                 LapDistance = 3, // kilometers

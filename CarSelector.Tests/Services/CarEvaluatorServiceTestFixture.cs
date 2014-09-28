@@ -7,6 +7,7 @@ namespace CarSelector.Tests.Services
     using CarSelector.Model;
     using CarSelector.Services;
     using CarSelector.Tests.Utils;
+    using System;
 
     [TestClass]
     public class CarEvaluatorServiceTestFixture
@@ -58,15 +59,58 @@ namespace CarSelector.Tests.Services
         }
 
         [TestMethod]
-        public void EnsureValidExceptionIsThrownForBadCarConfiguration()
+        [ExpectedException(typeof(NullReferenceException))]
+        public void WillThrowNullReferenceExceptionIfACarConfigurationIsNullInArray()
         {
-            CarConfiguration carConfiguration = new CarConfiguration();
-            carConfiguration.FuelCapacity = 80; // Total Litres of fuel that the car can hold
-            carConfiguration.TimeToCompleteLap = 10; // Seconds to complete lap
-            carConfiguration.AverageFuelConsumptionPerLap = 0; // Average fuel consumption per lap in Litres
+            CarGenerator carGenerator = new CarGenerator();
+            CarConfiguration[] carConfigurations = carGenerator.GenerateCarConfigurations(100);
+
+            carConfigurations[50] = null;
 
             ICarEvaluatorService carEvaluatorService = new CarEvaluatorService();
-            CarRaceTrackEvaluation carRaceTrackEvaluation = carEvaluatorService.Evaluate(_raceTrack, carConfiguration);
+            carEvaluatorService.EvaluateAndSort(_raceTrack, carConfigurations);
+        }
+
+        [TestMethod]
+        public void EnsureZeroCarValuesAreHandledAndNoExceptionIsThrown()
+        {
+            CarConfiguration carConfiguration = new CarConfiguration();
+            carConfiguration.FuelCapacity = 0;
+            carConfiguration.TimeToCompleteLap = 0;
+            carConfiguration.AverageFuelConsumptionPerLap = 0;
+
+            ICarEvaluatorService carEvaluatorService = new CarEvaluatorService();
+            carEvaluatorService.Evaluate(_raceTrack, carConfiguration);
+        }
+
+        [TestMethod]
+        public void EnsureZeroTrackandCarValuesAreHandledAndNoExceptionIsThrown()
+        {
+            RaceTrack raceTrack = new RaceTrack{ LapDistance = 0, NoOfLapsToComplete = 0, PitstopTimespan = 0 };
+
+            CarConfiguration carConfiguration = new CarConfiguration();
+            carConfiguration.FuelCapacity = 0; 
+            carConfiguration.TimeToCompleteLap = 0; 
+            carConfiguration.AverageFuelConsumptionPerLap = 0; 
+
+            ICarEvaluatorService carEvaluatorService = new CarEvaluatorService();
+            CarRaceTrackEvaluation carRaceTrackEvaluation = carEvaluatorService.Evaluate(raceTrack, carConfiguration);
+            Assert.IsNotNull(carRaceTrackEvaluation);
+        }
+
+        [TestMethod]
+        public void EnsureZeroTrackValuesAreHandledAndNoExceptionIsThrown()
+        {
+            RaceTrack raceTrack = new RaceTrack { LapDistance = 0, NoOfLapsToComplete = 0, PitstopTimespan = 0 };
+
+            CarConfiguration carConfiguration = new CarConfiguration();
+            carConfiguration.FuelCapacity = 100;
+            carConfiguration.TimeToCompleteLap = 400;
+            carConfiguration.AverageFuelConsumptionPerLap = 7.862;
+
+            ICarEvaluatorService carEvaluatorService = new CarEvaluatorService();
+            CarRaceTrackEvaluation carRaceTrackEvaluation = carEvaluatorService.Evaluate(raceTrack, carConfiguration);
+            Assert.IsNotNull(carRaceTrackEvaluation);
         }
 
     }

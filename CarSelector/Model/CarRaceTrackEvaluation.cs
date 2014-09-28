@@ -1,5 +1,7 @@
 ﻿namespace CarSelector.Model
 {
+    using CarSelector.Contracts;
+
     public class CarRaceTrackEvaluation : ICompletionTime
     {
         public RaceTrack RaceTrack { get; set; }

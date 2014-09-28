@@ -7,6 +7,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarSelector.Tests", "CarSel
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarSelector", "CarSelector\CarSelector.csproj", "{8BBFABA0-763A-4B47-B81E-9BEEC8A57B3B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarSelectorConsoleV2", "CarSelectorConsoleV2\CarSelectorConsoleV2.csproj", "{71BC2CC3-721A-4281-A9B8-9806D24AB9B8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E0EAF723-E3D2-4B7F-994D-269F045915E3}"
+	ProjectSection(SolutionItems) = preProject
+		CarSelectorConsole\PROBLEM_STATEMENT.TXT = CarSelectorConsole\PROBLEM_STATEMENT.TXT
+		CarSelector\Readme.md = CarSelector\Readme.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +33,10 @@ Global
 		{8BBFABA0-763A-4B47-B81E-9BEEC8A57B3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BBFABA0-763A-4B47-B81E-9BEEC8A57B3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BBFABA0-763A-4B47-B81E-9BEEC8A57B3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71BC2CC3-721A-4281-A9B8-9806D24AB9B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71BC2CC3-721A-4281-A9B8-9806D24AB9B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71BC2CC3-721A-4281-A9B8-9806D24AB9B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71BC2CC3-721A-4281-A9B8-9806D24AB9B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,9 +1,6 @@
 ﻿
 namespace CarSelector.Tests.Utils
 {
-    // Taken from 
-    //http://www.codeproject.com/Articles/25172/Simple-Random-Number-Generation
-    // but not used since CarGenerator is for unit tests only
     public class SimpleRNG
     {
         private static uint m_w;

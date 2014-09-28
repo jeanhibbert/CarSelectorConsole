@@ -1,6 +1,7 @@
 ﻿
 namespace CarSelector.Services
 {
+    using CarSelector.Contracts;
     using CarSelector.Model;
 
     internal class QuickSort<T> where T : ICompletionTime

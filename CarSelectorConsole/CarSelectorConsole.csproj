@@ -46,9 +46,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="README.TXT" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\CarSelector.Tests\CarSelector.Tests.csproj">
       <Project>{bf69fe31-2952-4178-8dbc-4357a1bc54ea}</Project>
       <Name>CarSelector.Tests</Name>
